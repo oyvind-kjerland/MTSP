@@ -8,6 +8,6 @@ namespace MTSP.EA
 {
     abstract class FitnessEvaluator
     {
-        abstract public float Evaluate(Individual individual);
+        abstract public double Evaluate(Individual individual);
     }
 }
