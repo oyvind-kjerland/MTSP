@@ -15,17 +15,19 @@ namespace MTSP
         public Phenotype Phenotype { get; set; }
 
         // The individual's fitness
-        public float Fitness { get; set; }
+        public double F1 { get; set; }
+        public double F2 { get; set; }
 
         // The individual's scaled fitness
-        public float ScaledFitness { get; set; }
+        public int Rank { get; set; }
+        public double CrowdingDistance { get; set; } 
 
         // Comparison
         public int CompareTo(object obj)
         {
             Individual other = obj as Individual;
 
-            return -Fitness.CompareTo(other.Fitness);
+            return 0;
         }
     }
 }
