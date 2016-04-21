@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.startButton = new System.Windows.Forms.Button();
             this.comboBoxProblem = new System.Windows.Forms.ComboBox();
             this.labelProblem = new System.Windows.Forms.Label();
@@ -43,10 +46,12 @@
             this.numericNumGenerations = new System.Windows.Forms.NumericUpDown();
             this.cancelButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
+            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.crossoverNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mutationNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericNumGenerations)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.SuspendLayout();
             // 
             // startButton
@@ -249,12 +254,32 @@
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.button2_Click);
             // 
+            // chart
+            // 
+            chartArea1.AxisX.Title = "Distance";
+            chartArea1.AxisY.Title = "Cost";
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
+            this.chart.Location = new System.Drawing.Point(12, 206);
+            this.chart.Name = "chart";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
+            this.chart.Size = new System.Drawing.Size(875, 268);
+            this.chart.TabIndex = 33;
+            this.chart.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(895, 486);
+            this.Controls.Add(this.chart);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.label5);
@@ -277,6 +302,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mutationNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericPopulation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericNumGenerations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,6 +325,7 @@
         private System.Windows.Forms.NumericUpDown numericNumGenerations;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
     }
 }
 
