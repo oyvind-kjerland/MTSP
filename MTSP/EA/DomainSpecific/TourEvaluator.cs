@@ -31,8 +31,8 @@ namespace MTSP.EA.DomainSpecific
             totalCost += cityData.CostArr[tour.Last(), tour[0]];
             totalDistance += cityData.DistanceArr[tour.Last(), tour[0]];
 
-            individual.F1 = totalCost;
-            individual.F2 = totalDistance;
+            individual.Cost = totalCost;
+            individual.Distance = totalDistance;
 
             return 0;
         }

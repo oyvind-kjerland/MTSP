@@ -15,8 +15,8 @@ namespace MTSP
         public Phenotype Phenotype { get; set; }
 
         // The individual's fitness
-        public double F1 { get; set; }
-        public double F2 { get; set; }
+        public double Cost { get; set; }
+        public double Distance { get; set; }
 
         // The individual's scaled fitness
         public int Rank { get; set; }
