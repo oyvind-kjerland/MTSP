@@ -21,9 +21,6 @@ namespace MTSP.EA
         public Genotype Genotype { get; set; }
 
         public int generation;
-        public float average;
-        public float max;
-        public Individual best;
         public int ChildCount { get; set; }
         public bool Elitism { get; set; }
 
@@ -59,37 +56,13 @@ namespace MTSP.EA
             }
 
 
-            // Evaluate fitness of the individuals
-            average = 0;
-
-            // If no elitism, check the best of the generation
-            if (!Elitism)
-            {
-                max = 0;
-            }
-
             foreach (Individual individual in ChildPopulation)
             {
-                individual.Fitness = FitnessEvaluator.Evaluate(individual);
-
-                average += individual.Fitness;
-
-                if (individual.Fitness > max)
-                {
-                    max = individual.Fitness;
-                    best = individual;
-                }
+                FitnessEvaluator.Evaluate(individual);
             }
-            average = average / ChildPopulation.Count;
 
             // Perform adult selection
             AdultSelector.Select(ChildPopulation, AdultPopulation);
-
-            // Put in the best
-            if (Elitism)
-            {
-                AdultPopulation.Add(best);
-            }
 
             // Perform parent selection
             ParentSelector.Select(ParentList, AdultPopulation);
