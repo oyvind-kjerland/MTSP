@@ -30,6 +30,7 @@ namespace MTSP
         public Form1()
         {
             InitializeComponent();
+            PlotPopulation(null);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -120,12 +121,72 @@ namespace MTSP
             
         }
 
-        
 
-        
-        
+        private void ClearPlot()
+        {
+            // Remove striplines
+            chart.ChartAreas[0].AxisX.StripLines.Clear();
+            chart.ChartAreas[0].AxisY.StripLines.Clear();
+
+            // Clear points
+            chart.Series["Series1"].Points.Clear();
+        }
        
-        
+        private void PlotPopulations(List<List<Individual>> populations)
+        {
+            foreach (List<Individual> population in populations)
+                PlotPopulation(population);
+        }
+
+        private void PlotPopulation(List<Individual> population)
+        {
+            // Get a new color for each plot, in case we combine several plots
+            Color color = ColorSelector.GetColor();
+
+
+            // Get x limits
+            int bestX = 5;
+            int worstX = 1;
+            // Get y limits
+            int bestY = 4;
+            int worstY = 1;
+
+            // Plot limits
+            chart.ChartAreas[0].AxisX.StripLines.Add(GetLimit(bestX, color));
+            chart.ChartAreas[0].AxisX.StripLines.Add(GetLimit(worstX, color));
+            chart.ChartAreas[0].AxisY.StripLines.Add(GetLimit(bestY, color));
+            chart.ChartAreas[0].AxisY.StripLines.Add(GetLimit(worstY, color));
+
+            // Debugging
+            chart.Series["Series1"].Color = color;
+            chart.Series["Series1"].Points.AddXY(0, 0);
+            chart.Series["Series1"].Points.AddXY(10, 10);
+
+
+            // Plot population
+            /*foreach (Individual ind in population)
+            {
+                chart.Series["Series1"].Points.AddXY(0, 0); //Update when individual done
+            }*/
+        }
+
+        private StripLine GetLimit(int limit, Color color)
+        {
+            return new StripLine
+            {
+                BorderDashStyle = ChartDashStyle.Dash,
+                BorderWidth = 2,
+                BorderColor = color,
+                Interval = 0,
+                IntervalOffset = limit
+            };
+        }
+
+
+
+
+
+
         // Cancel button
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -135,13 +196,10 @@ namespace MTSP
         // Clear button
         private void button2_Click(object sender, EventArgs e)
         {
-            ClearChart();
+            ClearPlot();
         }
 
-        private void ClearChart()
-        {
         
-        }
         
 
         
