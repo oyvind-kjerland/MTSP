@@ -51,6 +51,7 @@
     <Compile Include="ColorSelector.cs" />
     <Compile Include="EA\AdultSelector.cs" />
     <Compile Include="CityData.cs" />
+    <Compile Include="EA\DomainSpecific\IntGeneticOperator.cs" />
     <Compile Include="EA\DomainSpecific\IntGenotype.cs" />
     <Compile Include="EA\DomainSpecific\IntToTourDeveloper.cs" />
     <Compile Include="EA\DomainSpecific\TourEvaluator.cs" />
