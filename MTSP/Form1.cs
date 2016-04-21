@@ -19,7 +19,7 @@ namespace MTSP
 
         private EALoop eaLoop;
         private BackgroundWorker bgw;
-
+        private CityData cityData;
 
 
 
@@ -34,9 +34,12 @@ namespace MTSP
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            cityData = new CityData();
+
             comboBoxProblem.SelectedIndex = 0;
             comboBoxAdultSelector.SelectedIndex = 0;
-
+            
         }
 
 
