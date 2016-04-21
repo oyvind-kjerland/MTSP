@@ -49,6 +49,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EA\AdultSelector.cs" />
+    <Compile Include="CityData.cs" />
+    <Compile Include="EA\DomainSpecific\IntGenotype.cs" />
+    <Compile Include="EA\DomainSpecific\IntToTourDeveloper.cs" />
+    <Compile Include="EA\DomainSpecific\TourEvaluator.cs" />
+    <Compile Include="EA\DomainSpecific\TourPhenotype.cs" />
     <Compile Include="EA\EALoop.cs" />
     <Compile Include="EA\FitnessEvaluator.cs" />
     <Compile Include="EA\GeneticOperator.cs" />
@@ -77,6 +82,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Cost.csv" />
+    <None Include="Distance.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -91,7 +98,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EA\DomainSpecific\" />
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

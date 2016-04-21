@@ -14,10 +14,10 @@ namespace MTSP.EA.DomainSpecific
         {
             TourPhenotype phenotype = (TourPhenotype)individual.Phenotype;
 
-            // Fitness 1 is cost
+            // Fitness 2 is cost
             int totalCost = 0;
 
-            // Fitness 2 is distance
+            // Fitness 1 is distance
             int totalDistance = 0;
             int[] tour = phenotype.Tour;
 
