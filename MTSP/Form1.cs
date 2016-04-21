@@ -30,7 +30,6 @@ namespace MTSP
         public Form1()
         {
             InitializeComponent();
-            PlotPopulation(null);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -143,13 +142,12 @@ namespace MTSP
             // Get a new color for each plot, in case we combine several plots
             Color color = ColorSelector.GetColor();
 
-
             // Get x limits
-            int bestX = 5;
-            int worstX = 1;
+            int bestX = (int)population.Max(x => x.Distance);
+            int worstX = (int)population.Min(x => x.Distance);
             // Get y limits
-            int bestY = 4;
-            int worstY = 1;
+            int bestY = (int)population.Max(y => y.Cost);
+            int worstY = (int)population.Min(y => y.Cost);
 
             // Plot limits
             chart.ChartAreas[0].AxisX.StripLines.Add(GetLimit(bestX, color));
@@ -157,17 +155,13 @@ namespace MTSP
             chart.ChartAreas[0].AxisY.StripLines.Add(GetLimit(bestY, color));
             chart.ChartAreas[0].AxisY.StripLines.Add(GetLimit(worstY, color));
 
-            // Debugging
             chart.Series["Series1"].Color = color;
-            chart.Series["Series1"].Points.AddXY(0, 0);
-            chart.Series["Series1"].Points.AddXY(10, 10);
-
 
             // Plot population
-            /*foreach (Individual ind in population)
+            foreach (Individual ind in population)
             {
-                chart.Series["Series1"].Points.AddXY(0, 0); //Update when individual done
-            }*/
+                chart.Series["Series1"].Points.AddXY(ind.Distance, ind.Cost);
+            }
         }
 
         private StripLine GetLimit(int limit, Color color)
