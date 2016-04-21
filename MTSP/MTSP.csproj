@@ -49,23 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EA\AdultSelector.cs" />
-    <Compile Include="EA\DomainSpecific\BinaryGeneticOperator.cs" />
-    <Compile Include="EA\DomainSpecific\BinaryGenotype.cs" />
-    <Compile Include="EA\DomainSpecific\BinaryPhenotype.cs" />
-    <Compile Include="EA\DomainSpecific\BinaryToBinaryDeveloper.cs" />
-    <Compile Include="EA\DomainSpecific\BinaryToSymbolDeveloper.cs" />
-    <Compile Include="EA\DomainSpecific\FitnessProportionate.cs" />
-    <Compile Include="EA\DomainSpecific\FullSelector.cs" />
-    <Compile Include="EA\DomainSpecific\GlobalParentSelector.cs" />
-    <Compile Include="EA\DomainSpecific\LOLZEvaluator.cs" />
-    <Compile Include="EA\DomainSpecific\MixingSelector.cs" />
-    <Compile Include="EA\DomainSpecific\OneMaxEvaluator.cs" />
-    <Compile Include="EA\DomainSpecific\OverProductionSelector.cs" />
-    <Compile Include="EA\DomainSpecific\RankScaling.cs" />
-    <Compile Include="EA\DomainSpecific\SigmaScaling.cs" />
-    <Compile Include="EA\DomainSpecific\SurprisingEvaluator.cs" />
-    <Compile Include="EA\DomainSpecific\SymbolPhenotype.cs" />
-    <Compile Include="EA\DomainSpecific\TournamentSelector.cs" />
     <Compile Include="EA\EALoop.cs" />
     <Compile Include="EA\FitnessEvaluator.cs" />
     <Compile Include="EA\GeneticOperator.cs" />
@@ -82,6 +65,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -103,6 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EA\DomainSpecific\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

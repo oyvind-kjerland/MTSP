@@ -24,8 +24,6 @@ namespace MTSP.EA
         public float average;
         public float max;
         public Individual best;
-        public float sd;
-        public float goal;
         public int ChildCount { get; set; }
         public bool Elitism { get; set; }
 
