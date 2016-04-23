@@ -56,6 +56,7 @@
     <Compile Include="EA\DomainSpecific\IntToTourDeveloper.cs" />
     <Compile Include="EA\DomainSpecific\NSGAIISelector.cs" />
     <Compile Include="EA\DomainSpecific\TourEvaluator.cs" />
+    <Compile Include="EA\DomainSpecific\TournamentSelector.cs" />
     <Compile Include="EA\DomainSpecific\TourPhenotype.cs" />
     <Compile Include="EA\EALoop.cs" />
     <Compile Include="EA\FitnessEvaluator.cs" />
