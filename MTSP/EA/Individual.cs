@@ -19,15 +19,22 @@ namespace MTSP
         public double Distance { get; set; }
 
         // The individual's scaled fitness
+        public int NumDominatedBy { get; set; }
+        public HashSet<Individual> DominatedSet { get; set; }
+
         public int Rank { get; set; }
         public double CrowdingDistance { get; set; } 
+
+
 
         // Comparison
         public int CompareTo(object obj)
         {
             Individual other = obj as Individual;
 
-            return 0;
+            // Sort on one of the fitness metrics
+            // In this case, the cost
+            return (Cost.CompareTo(other.Cost));
         }
     }
 }
