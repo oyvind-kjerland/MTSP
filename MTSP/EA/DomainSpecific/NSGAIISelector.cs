@@ -27,10 +27,13 @@ namespace MTSP.EA.DomainSpecific
 
             while (adultPopulation.Count + currentFront.Count < AdultCount)
             {
+                CrowdingDistanceAssignment(currentFront);
                 adultPopulation.AddRange(currentFront);
                 currentRank++;
                 currentFront = fronts[currentRank];
             }
+
+            CrowdingDistanceAssignment(currentFront);
             
             // Check special case
             if (adultPopulation.Count + currentFront.Count == AdultCount)
@@ -38,9 +41,6 @@ namespace MTSP.EA.DomainSpecific
                 adultPopulation.AddRange(currentFront);
             } else
             {
-                // Assign crowding distance
-                CrowdingDistanceAssignment(currentFront);
-
                 // Sort based on crowding distance
                 currentFront.Sort((x, y) => x.CrowdingDistance.CompareTo(y.CrowdingDistance));
 
