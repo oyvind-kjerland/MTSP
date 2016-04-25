@@ -11,6 +11,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using MTSP.EA;
 using System.Threading;
 using System.Diagnostics;
+using MTSP.EA.DomainSpecific;
 
 namespace MTSP
 {
@@ -30,7 +31,7 @@ namespace MTSP
         public Form1()
         {
             InitializeComponent();
-            PlotPopulation(null);
+            //PlotPopulation(null);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -46,14 +47,36 @@ namespace MTSP
 
         private void SetupProblem()
         {
+
+            IntGenotype genotype = new IntGenotype(48);
+            genotype.Min = 0;
+            genotype.Max = 48;
+            eaLoop.Genotype = genotype;
+
+            eaLoop.GeneticOperator = new IntGeneticOperator();
+            eaLoop.GeneticOperator.MutationRate = (float)mutationNumeric.Value;
+            eaLoop.GeneticOperator.CrossoverRate = (float)crossoverNumeric.Value;
+
+            eaLoop.PhenotypeDeveloper = new IntToTourDeveloper();
+            eaLoop.ChildCount = (int)numericPopulation.Value;
+            TourEvaluator evaluator = new TourEvaluator();
+            evaluator.cityData = cityData;
+            eaLoop.FitnessEvaluator = evaluator;
         }
 
         private void SetupAdultSelector()
         {
+            NSGAIISelector selector = new NSGAIISelector();
+            selector.AdultCount = (int)numericPopulation.Value;
+            eaLoop.AdultSelector = selector;
         }
 
         private void SetupParentSelector()
         {
+            TournamentSelector selector = new TournamentSelector();
+            selector.ChildCount = (int)numericPopulation.Value;
+            selector.TournamentSize = 15;
+            eaLoop.ParentSelector = selector;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -106,14 +129,16 @@ namespace MTSP
 
                 // Perform one iteration of the loop
                 eaLoop.Iterate();
-            
+                bgw.ReportProgress(1);
             }
             
         }
 
         private void bgw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            
+            List<Individual> adultPopulation = new List<Individual>();
+            adultPopulation.AddRange(eaLoop.AdultPopulation);
+            if (adultPopulation.Count > 0) PlotPopulation(adultPopulation);
         }
 
         private void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -142,7 +167,8 @@ namespace MTSP
         {
             // Get a new color for each plot, in case we combine several plots
             Color color = ColorSelector.GetColor();
-
+            color = Color.DarkRed;
+            chart.Series["Series1"].Points.Clear();
 
             // Get x limits
             int bestX = 5;
@@ -158,16 +184,16 @@ namespace MTSP
             chart.ChartAreas[0].AxisY.StripLines.Add(GetLimit(worstY, color));
 
             // Debugging
-            chart.Series["Series1"].Color = color;
-            chart.Series["Series1"].Points.AddXY(0, 0);
-            chart.Series["Series1"].Points.AddXY(10, 10);
+            //chart.Series["Series1"].Color = color;
+            //chart.Series["Series1"].Points.AddXY(0, 0);
+            //chart.Series["Series1"].Points.AddXY(10, 10);
 
 
             // Plot population
-            /*foreach (Individual ind in population)
+            foreach (Individual ind in population)
             {
-                chart.Series["Series1"].Points.AddXY(0, 0); //Update when individual done
-            }*/
+                chart.Series["Series1"].Points.AddXY(ind.Cost, ind.Distance); //Update when individual done
+            }
         }
 
         private StripLine GetLimit(int limit, Color color)

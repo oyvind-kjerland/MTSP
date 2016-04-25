@@ -19,14 +19,17 @@ namespace MTSP.EA.DomainSpecific
             List = new int[length];
         }
 
-        public IntGenotype(int length, int[] list)
+        public IntGenotype(int length, int[] list, int min, int max)
         {
+            Length = length;
             List = list;
+            Min = min;
+            Max = max;
         }
 
         public override Genotype Clone()
         {
-            return new IntGenotype(Length, (int[])List.Clone());
+            return new IntGenotype(Length, (int[])List.Clone(), Min, Max);
         }
 
         public override void Randomize(Random random)

@@ -146,7 +146,7 @@ namespace MTSP.EA.DomainSpecific
                 front[0].CrowdingDistance = double.PositiveInfinity;
                 front[l - 1].CrowdingDistance = double.PositiveInfinity;
 
-                for (int i=0; i<l-1; i++)
+                for (int i=1; i<l-1; i++)
                 {
                     if (m == 0)
                     {

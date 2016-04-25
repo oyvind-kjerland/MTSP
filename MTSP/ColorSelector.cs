@@ -16,7 +16,7 @@ namespace MTSP
 
         public static Color GetColor()
         {
-            counter = counter + 1 % colors.Count;
+            counter = (counter + 1) % colors.Count;
             return colors[counter];
         }
 

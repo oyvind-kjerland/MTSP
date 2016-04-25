@@ -22,7 +22,7 @@ namespace MTSP.EA.DomainSpecific
             List<int> possibleCities = new List<int>(max);
             for (int i = 0; i < max; i++)
             {
-                possibleCities[i] = i;
+                possibleCities.Add(i);
             }
 
             
@@ -30,7 +30,7 @@ namespace MTSP.EA.DomainSpecific
             int c;
             for (int i = 0; i < max; i++)
             {
-                c = i % possibleCities.Count;
+                c = intGenotype.List[i] % possibleCities.Count;
                 tour[i] = possibleCities[c];
                 possibleCities.RemoveAt(c);
             }
