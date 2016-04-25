@@ -156,7 +156,7 @@ namespace MTSP
             // Clear points
             chart.Series["Series1"].Points.Clear();
         }
-       
+
         private void PlotPopulations(List<List<Individual>> populations)
         {
             foreach (List<Individual> population in populations)
@@ -166,16 +166,17 @@ namespace MTSP
         private void PlotPopulation(List<Individual> population)
         {
             // Get a new color for each plot, in case we combine several plots
-            Color color = ColorSelector.GetColor();
-            color = Color.DarkRed;
-            chart.Series["Series1"].Points.Clear();
+            //Color color = ColorSelector.GetColor();
+            Color color = Color.DarkRed;
+            ClearPlot();
+            chart.ChartAreas[0].AxisX.Minimum = 0;
+            //chart.Series["Series1"].Points.Clear();
 
-            // Get x limits
-            int bestX = 5;
-            int worstX = 1;
+            int bestX = (int)population.Min(x => x.Cost);
+            int worstX = (int)population.Max(x => x.Cost);
             // Get y limits
-            int bestY = 4;
-            int worstY = 1;
+            int bestY = (int)population.Min(y => y.Distance);
+            int worstY = (int)population.Max(y => y.Distance);
 
             // Plot limits
             chart.ChartAreas[0].AxisX.StripLines.Add(GetLimit(bestX, color));
@@ -201,7 +202,7 @@ namespace MTSP
             return new StripLine
             {
                 BorderDashStyle = ChartDashStyle.Dash,
-                BorderWidth = 2,
+                BorderWidth = 1,
                 BorderColor = color,
                 Interval = 0,
                 IntervalOffset = limit
