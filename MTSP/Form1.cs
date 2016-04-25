@@ -129,13 +129,15 @@ namespace MTSP
 
                 // Perform one iteration of the loop
                 eaLoop.Iterate();
-                bgw.ReportProgress(1);
+                bgw.ReportProgress(1,i);
             }
             
         }
 
         private void bgw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            generationCountLabel.Text = e.UserState.ToString();
+
             List<Individual> adultPopulation = new List<Individual>();
             adultPopulation.AddRange(eaLoop.AdultPopulation);
             if (adultPopulation.Count > 0) PlotPopulation(adultPopulation);

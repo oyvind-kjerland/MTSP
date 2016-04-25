@@ -47,6 +47,8 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
+            this.generationCountLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.crossoverNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mutationNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericPopulation)).BeginInit();
@@ -273,12 +275,31 @@
             this.chart.TabIndex = 33;
             this.chart.Text = "chart1";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(673, 186);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(62, 13);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "Generation:";
+            // 
+            // generationCountLabel
+            // 
+            this.generationCountLabel.AutoSize = true;
+            this.generationCountLabel.Location = new System.Drawing.Point(742, 186);
+            this.generationCountLabel.Name = "generationCountLabel";
+            this.generationCountLabel.Size = new System.Drawing.Size(0, 13);
+            this.generationCountLabel.TabIndex = 35;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(895, 486);
+            this.Controls.Add(this.generationCountLabel);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.chart);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.cancelButton);
@@ -326,6 +347,8 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label generationCountLabel;
     }
 }
 
