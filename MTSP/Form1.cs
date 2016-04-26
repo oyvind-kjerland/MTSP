@@ -21,7 +21,7 @@ namespace MTSP
         private EALoop eaLoop;
         private BackgroundWorker bgw;
         private CityData cityData;
-
+        private List<Individual> plotPopulation = new List<Individual>();
 
 
         // Random object
@@ -130,6 +130,13 @@ namespace MTSP
 
                 // Perform one iteration of the loop
                 eaLoop.Iterate();
+
+                lock(plotPopulation)
+                {
+                    plotPopulation.Clear();
+                    plotPopulation.AddRange(eaLoop.AdultPopulation);
+                }
+
                 bgw.ReportProgress(1,i);
             }
             
@@ -139,9 +146,11 @@ namespace MTSP
         {
             generationCountLabel.Text = e.UserState.ToString();
 
-            List<Individual> adultPopulation = new List<Individual>();
-            adultPopulation.AddRange(eaLoop.AdultPopulation);
-            if (adultPopulation.Count > 0) PlotPopulation(adultPopulation);
+            lock (plotPopulation)
+            {
+                PlotPopulation(plotPopulation);
+            }
+
         }
 
         private void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
