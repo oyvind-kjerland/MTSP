@@ -12,7 +12,7 @@ namespace MTSP
     {
 
         private static int counter = 0;
-        private static List<Color> colors = new List<Color>() { Color.AliceBlue, Color.DarkRed, Color.DarkSeaGreen };
+        private static List<Color> colors = new List<Color>() { Color.DarkGreen, Color.DarkRed, Color.DarkOrange };
 
         public static Color GetColor()
         {

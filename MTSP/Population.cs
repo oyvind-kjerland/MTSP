@@ -11,6 +11,8 @@ namespace MTSP
     {
         public List<double> cost;
         public List<double> distance;
+        public List<int> rank;
+
 
         public Population(List<Individual> population)
         {
@@ -21,6 +23,7 @@ namespace MTSP
             {
                 cost.Add(i.Cost);
                 distance.Add(i.Distance);
+                rank.Add(i.Rank);
             }
 
         }
@@ -33,6 +36,7 @@ namespace MTSP
                 Individual ind = new Individual();
                 ind.Cost = cost[i];
                 ind.Distance = distance[i];
+                ind.Rank = rank[i];
                 population.Add(ind);
             }
 
