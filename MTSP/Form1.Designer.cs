@@ -266,6 +266,8 @@
             // 
             chartArea1.AxisX.Title = "Distance";
             chartArea1.AxisY.Title = "Cost";
+            chartArea1.CursorX.IsUserSelectionEnabled = true;
+            chartArea1.CursorY.IsUserSelectionEnabled = true;
             chartArea1.Name = "ChartArea1";
             this.chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";

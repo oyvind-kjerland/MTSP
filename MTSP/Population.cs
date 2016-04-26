@@ -18,6 +18,7 @@ namespace MTSP
         {
             cost = new List<double>();
             distance = new List<double>();
+            rank = new List<int>();
 
             foreach (Individual i in population)
             {
