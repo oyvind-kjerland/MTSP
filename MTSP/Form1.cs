@@ -174,11 +174,11 @@ namespace MTSP
             chart.ChartAreas[0].AxisX.Minimum = 0;
             //chart.Series["Series1"].Points.Clear();
 
-            int bestX = (int)population.Min(x => x.Cost);
-            int worstX = (int)population.Max(x => x.Cost);
+            int bestX = (int)population.Min(x => x.Distance);
+            int worstX = (int)population.Max(x => x.Distance);
             // Get y limits
-            int bestY = (int)population.Min(y => y.Distance);
-            int worstY = (int)population.Max(y => y.Distance);
+            int bestY = (int)population.Min(y => y.Cost);
+            int worstY = (int)population.Max(y => y.Cost);
 
             // Plot limits
             chart.ChartAreas[0].AxisX.StripLines.Add(GetLimit(bestX, color));
@@ -195,7 +195,7 @@ namespace MTSP
             // Plot population
             foreach (Individual ind in population)
             {
-                chart.Series["Series1"].Points.AddXY(ind.Cost, ind.Distance); //Update when individual done
+                chart.Series["Series1"].Points.AddXY(ind.Distance, ind.Cost); //Update when individual done
             }
         }
 
