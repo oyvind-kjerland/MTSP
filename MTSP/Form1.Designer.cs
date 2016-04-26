@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.startButton = new System.Windows.Forms.Button();
             this.comboBoxProblem = new System.Windows.Forms.ComboBox();
             this.labelProblem = new System.Windows.Forms.Label();
@@ -57,6 +57,7 @@
             this.loadPopulation = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.checkBoxFirstFrontOnly = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.crossoverNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mutationNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericPopulation)).BeginInit();
@@ -263,19 +264,19 @@
             // 
             // chart
             // 
-            chartArea3.AxisX.Title = "Distance";
-            chartArea3.AxisY.Title = "Cost";
-            chartArea3.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart.Legends.Add(legend3);
+            chartArea1.AxisX.Title = "Distance";
+            chartArea1.AxisY.Title = "Cost";
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(12, 206);
             this.chart.Name = "chart";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
             this.chart.Size = new System.Drawing.Size(875, 268);
             this.chart.TabIndex = 33;
             this.chart.Text = "chart1";
@@ -376,12 +377,24 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // checkBoxFirstFrontOnly
+            // 
+            this.checkBoxFirstFrontOnly.AutoSize = true;
+            this.checkBoxFirstFrontOnly.Location = new System.Drawing.Point(667, 131);
+            this.checkBoxFirstFrontOnly.Name = "checkBoxFirstFrontOnly";
+            this.checkBoxFirstFrontOnly.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxFirstFrontOnly.Size = new System.Drawing.Size(118, 17);
+            this.checkBoxFirstFrontOnly.TabIndex = 42;
+            this.checkBoxFirstFrontOnly.Text = "Show first front only";
+            this.checkBoxFirstFrontOnly.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(895, 486);
+            this.Controls.Add(this.checkBoxFirstFrontOnly);
             this.Controls.Add(this.loadPopulation);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label6);
@@ -448,6 +461,7 @@
         private System.Windows.Forms.Button loadPopulation;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.CheckBox checkBoxFirstFrontOnly;
     }
 }
 

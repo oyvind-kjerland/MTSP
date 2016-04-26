@@ -196,11 +196,13 @@ namespace MTSP
 
             chart.ChartAreas[0].AxisX.Minimum = 0;
 
-            int bestX = (int)population.Min(x => x.Cost);
-            int worstX = (int)population.Max(x => x.Cost);
+            bool firstFrontOnly = checkBoxFirstFrontOnly.Checked;
+
+            int bestX = (int)population.Min(x => (firstFrontOnly && x.Rank==0 || !firstFrontOnly) ? x.Cost : double.PositiveInfinity);
+            int worstX = (int)population.Max(x => (firstFrontOnly && x.Rank == 0 || !firstFrontOnly) ? x.Cost : double.NegativeInfinity);
             // Get y limits
-            int bestY = (int)population.Min(y => y.Distance);
-            int worstY = (int)population.Max(y => y.Distance);
+            int bestY = (int)population.Min(y => (firstFrontOnly && y.Rank == 0 || !firstFrontOnly) ? y.Distance : double.PositiveInfinity);
+            int worstY = (int)population.Max(y => (firstFrontOnly && y.Rank == 0 || !firstFrontOnly) ? y.Distance : double.NegativeInfinity);
 
             // Plot limits
             chart.ChartAreas[0].AxisX.StripLines.Add(GetLimit(bestX, color));
@@ -213,11 +215,14 @@ namespace MTSP
             //chart.Series["Series1"].Points.AddXY(0, 0);
             //chart.Series["Series1"].Points.AddXY(10, 10);
 
-
+            
             // Plot population
             foreach (Individual ind in population)
             {
-                chart.Series["Series1"].Points.AddXY(ind.Cost, ind.Distance); //Update when individual done
+                if (!firstFrontOnly || firstFrontOnly && ind.Rank == 0)
+                {
+                    chart.Series["Series1"].Points.AddXY(ind.Cost, ind.Distance); //Update when individual done
+                }
             }
         }
 
