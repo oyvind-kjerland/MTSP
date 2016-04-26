@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.startButton = new System.Windows.Forms.Button();
             this.comboBoxProblem = new System.Windows.Forms.ComboBox();
             this.labelProblem = new System.Windows.Forms.Label();
@@ -49,6 +49,10 @@
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label3 = new System.Windows.Forms.Label();
             this.generationCountLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.loadPopulation = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.crossoverNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mutationNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericPopulation)).BeginInit();
@@ -258,19 +262,19 @@
             // 
             // chart
             // 
-            chartArea1.AxisX.Title = "Distance";
-            chartArea1.AxisY.Title = "Cost";
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
+            chartArea7.AxisX.Title = "Distance";
+            chartArea7.AxisY.Title = "Cost";
+            chartArea7.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chart.Legends.Add(legend7);
             this.chart.Location = new System.Drawing.Point(12, 206);
             this.chart.Name = "chart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart.Series.Add(series1);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastPoint;
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chart.Series.Add(series7);
             this.chart.Size = new System.Drawing.Size(875, 268);
             this.chart.TabIndex = 33;
             this.chart.Text = "chart1";
@@ -292,12 +296,42 @@
             this.generationCountLabel.Size = new System.Drawing.Size(0, 13);
             this.generationCountLabel.TabIndex = 35;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(328, 177);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 23);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "Save Population";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
+            // loadPopulation
+            // 
+            this.loadPopulation.Location = new System.Drawing.Point(435, 177);
+            this.loadPopulation.Name = "loadPopulation";
+            this.loadPopulation.Size = new System.Drawing.Size(101, 23);
+            this.loadPopulation.TabIndex = 37;
+            this.loadPopulation.Text = "Load Population";
+            this.loadPopulation.UseVisualStyleBackColor = true;
+            this.loadPopulation.Click += new System.EventHandler(this.loadPopulation_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(895, 486);
+            this.Controls.Add(this.loadPopulation);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.generationCountLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.chart);
@@ -349,6 +383,10 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label generationCountLabel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button loadPopulation;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

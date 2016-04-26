@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTSP
 {
-    abstract class Phenotype
+    public abstract class Phenotype
     {
         abstract public string GetPhenotypeString();
     }
