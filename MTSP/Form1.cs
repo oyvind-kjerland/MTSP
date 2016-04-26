@@ -41,6 +41,7 @@ namespace MTSP
 
             comboBoxProblem.SelectedIndex = 0;
             comboBoxAdultSelector.SelectedIndex = 0;
+            comboBoxParentSelector.SelectedIndex = 0;
             
         }
 
@@ -75,7 +76,7 @@ namespace MTSP
         {
             TournamentSelector selector = new TournamentSelector();
             selector.ChildCount = (int)numericPopulation.Value;
-            selector.TournamentSize = 15;
+            selector.TournamentSize = (int)numericTournamentSize.Value;
             eaLoop.ParentSelector = selector;
         }
 

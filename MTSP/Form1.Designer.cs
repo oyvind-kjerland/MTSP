@@ -49,11 +49,16 @@
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label3 = new System.Windows.Forms.Label();
             this.generationCountLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxParentSelector = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numericTournamentSize = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.crossoverNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mutationNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericPopulation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericNumGenerations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTournamentSize)).BeginInit();
             this.SuspendLayout();
             // 
             // startButton
@@ -71,9 +76,7 @@
             this.comboBoxProblem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxProblem.FormattingEnabled = true;
             this.comboBoxProblem.Items.AddRange(new object[] {
-            "OneMax",
-            "LOLZ",
-            "Surprising Sequences"});
+            "MTSP"});
             this.comboBoxProblem.Location = new System.Drawing.Point(66, 11);
             this.comboBoxProblem.Name = "comboBoxProblem";
             this.comboBoxProblem.Size = new System.Drawing.Size(121, 21);
@@ -102,9 +105,7 @@
             this.comboBoxAdultSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAdultSelector.FormattingEnabled = true;
             this.comboBoxAdultSelector.Items.AddRange(new object[] {
-            "Full",
-            "Over-Production",
-            "Mixing"});
+            "NSGA-II"});
             this.comboBoxAdultSelector.Location = new System.Drawing.Point(308, 11);
             this.comboBoxAdultSelector.Name = "comboBoxAdultSelector";
             this.comboBoxAdultSelector.Size = new System.Drawing.Size(121, 21);
@@ -191,7 +192,7 @@
             this.numericPopulation.Size = new System.Drawing.Size(87, 20);
             this.numericPopulation.TabIndex = 15;
             this.numericPopulation.Value = new decimal(new int[] {
-            1000,
+            400,
             0,
             0,
             0});
@@ -292,12 +293,67 @@
             this.generationCountLabel.Size = new System.Drawing.Size(0, 13);
             this.generationCountLabel.TabIndex = 35;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(464, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Parent Selector";
+            // 
+            // comboBoxParentSelector
+            // 
+            this.comboBoxParentSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxParentSelector.FormattingEnabled = true;
+            this.comboBoxParentSelector.Items.AddRange(new object[] {
+            "Tournament"});
+            this.comboBoxParentSelector.Location = new System.Drawing.Point(545, 11);
+            this.comboBoxParentSelector.Name = "comboBoxParentSelector";
+            this.comboBoxParentSelector.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxParentSelector.TabIndex = 36;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(464, 40);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(87, 13);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Tournament Size";
+            // 
+            // numericTournamentSize
+            // 
+            this.numericTournamentSize.Location = new System.Drawing.Point(579, 38);
+            this.numericTournamentSize.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericTournamentSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericTournamentSize.Name = "numericTournamentSize";
+            this.numericTournamentSize.Size = new System.Drawing.Size(87, 20);
+            this.numericTournamentSize.TabIndex = 38;
+            this.numericTournamentSize.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(895, 486);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.numericTournamentSize);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBoxParentSelector);
             this.Controls.Add(this.generationCountLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.chart);
@@ -324,6 +380,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericPopulation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericNumGenerations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTournamentSize)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -349,6 +406,10 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label generationCountLabel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBoxParentSelector;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numericTournamentSize;
     }
 }
 
