@@ -168,6 +168,9 @@ namespace MTSP
             chart.ChartAreas[0].AxisX.StripLines.Clear();
             chart.ChartAreas[0].AxisY.StripLines.Clear();
 
+            // Clear all but standard serie
+            while (chart.Series.Count > 1)
+                chart.Series.RemoveAt(1);
             // Clear points
             chart.Series["Series1"].Points.Clear();
         }
@@ -187,11 +190,18 @@ namespace MTSP
             {
                 ClearPlot();
                 color = Color.DarkRed;
+                chart.Series["Series1"].Color = Color.Blue;
             }
             else
             {
+                Series s = new Series();
+                s.ChartType = SeriesChartType.FastPoint;
                 color = ColorSelector.GetColor();
+                s.Color = color;
+                chart.Series.Add(s);
             }
+
+            Series currentSerie = chart.Series[chart.Series.Count - 1];
 
 
             chart.ChartAreas[0].AxisX.Minimum = 0;
@@ -217,7 +227,7 @@ namespace MTSP
             // Plot population
             foreach (Individual ind in population)
             {
-                chart.Series["Series1"].Points.AddXY(ind.Cost, ind.Distance); //Update when individual done
+                currentSerie.Points.AddXY(ind.Cost, ind.Distance); //Update when individual done
             }
         }
 
