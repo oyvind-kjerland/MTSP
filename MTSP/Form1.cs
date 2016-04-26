@@ -210,11 +210,11 @@ namespace MTSP
 
             bool firstFrontOnly = checkBoxFirstFrontOnly.Checked;
 
-            int bestX = (int)population.Min(x => (firstFrontOnly && x.Rank==0 || !firstFrontOnly) ? x.Cost : double.PositiveInfinity);
-            int worstX = (int)population.Max(x => (firstFrontOnly && x.Rank == 0 || !firstFrontOnly) ? x.Cost : double.NegativeInfinity);
+            int bestX = (int)population.Min(x => (firstFrontOnly && x.Rank==0 || !firstFrontOnly) ? x.Distance : double.PositiveInfinity);
+            int worstX = (int)population.Max(x => (firstFrontOnly && x.Rank == 0 || !firstFrontOnly) ? x.Distance : double.NegativeInfinity);
             // Get y limits
-            int bestY = (int)population.Min(y => (firstFrontOnly && y.Rank == 0 || !firstFrontOnly) ? y.Distance : double.PositiveInfinity);
-            int worstY = (int)population.Max(y => (firstFrontOnly && y.Rank == 0 || !firstFrontOnly) ? y.Distance : double.NegativeInfinity);
+            int bestY = (int)population.Min(y => (firstFrontOnly && y.Rank == 0 || !firstFrontOnly) ? y.Cost : double.PositiveInfinity);
+            int worstY = (int)population.Max(y => (firstFrontOnly && y.Rank == 0 || !firstFrontOnly) ? y.Cost : double.NegativeInfinity);
 
             // Plot limits
             chart.ChartAreas[0].AxisX.StripLines.Add(GetLimit(bestX, color));
@@ -228,7 +228,7 @@ namespace MTSP
             {
                 if (!firstFrontOnly || firstFrontOnly && ind.Rank == 0)
                 {
-                    currentSeries.Points.AddXY(ind.Cost, ind.Distance); //Update when individual done
+                    currentSeries.Points.AddXY(ind.Distance, ind.Cost); //Update when individual done
             }
         }
         }
