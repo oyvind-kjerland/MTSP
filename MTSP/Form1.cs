@@ -12,6 +12,9 @@ using MTSP.EA;
 using System.Threading;
 using System.Diagnostics;
 using MTSP.EA.DomainSpecific;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace MTSP
 {
@@ -148,7 +151,7 @@ namespace MTSP
 
             lock (plotPopulation)
             {
-                PlotPopulation(plotPopulation);
+                PlotPopulation(plotPopulation, true);
             }
 
         }
@@ -172,23 +175,32 @@ namespace MTSP
         private void PlotPopulations(List<List<Individual>> populations)
         {
             foreach (List<Individual> population in populations)
-                PlotPopulation(population);
+                PlotPopulation(population, true);
         }
 
-        private void PlotPopulation(List<Individual> population)
+        private void PlotPopulation(List<Individual> population, bool clear)
         {
             // Get a new color for each plot, in case we combine several plots
             //Color color = ColorSelector.GetColor();
-            Color color = Color.DarkRed;
-            ClearPlot();
-            chart.ChartAreas[0].AxisX.Minimum = 0;
-            //chart.Series["Series1"].Points.Clear();
+            Color color = Color.Blue;
+            if (clear)
+            {
+                ClearPlot();
+                color = Color.DarkRed;
+            }
+            else
+            {
+                color = ColorSelector.GetColor();
+            }
 
-            int bestX = (int)population.Min(x => x.Distance);
-            int worstX = (int)population.Max(x => x.Distance);
+
+            chart.ChartAreas[0].AxisX.Minimum = 0;
+
+            int bestX = (int)population.Min(x => x.Cost);
+            int worstX = (int)population.Max(x => x.Cost);
             // Get y limits
-            int bestY = (int)population.Min(y => y.Cost);
-            int worstY = (int)population.Max(y => y.Cost);
+            int bestY = (int)population.Min(y => y.Distance);
+            int worstY = (int)population.Max(y => y.Distance);
 
             // Plot limits
             chart.ChartAreas[0].AxisX.StripLines.Add(GetLimit(bestX, color));
@@ -205,7 +217,7 @@ namespace MTSP
             // Plot population
             foreach (Individual ind in population)
             {
-                chart.Series["Series1"].Points.AddXY(ind.Distance, ind.Cost); //Update when individual done
+                chart.Series["Series1"].Points.AddXY(ind.Cost, ind.Distance); //Update when individual done
             }
         }
 
@@ -221,7 +233,23 @@ namespace MTSP
             };
         }
 
+        private List<Individual> DeserializePopulation(String fileName)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            Population obj = (Population)formatter.Deserialize(stream);
+            stream.Close();
+            return obj.RestorePopulation();
+        }
 
+        private void SerializePopulation(List<Individual> population, String fileName)
+        {
+            Population obj = new Population(population);
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, obj);
+            stream.Close();
+        }
 
 
 
@@ -238,9 +266,27 @@ namespace MTSP
             ClearPlot();
         }
 
-        
-        
+        private void loadPopulation_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                string fileName = openFileDialog1.FileName;
+                List<Individual> pop = DeserializePopulation(fileName);
+                PlotPopulation(pop, false);
+            }
+        }
 
-        
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            // When user clicks button, show the dialog.
+            saveFileDialog1.ShowDialog();
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            string name = saveFileDialog1.FileName;
+            SerializePopulation(eaLoop.AdultPopulation, name);
+        }
     }
 }
