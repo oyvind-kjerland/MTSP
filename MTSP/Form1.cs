@@ -12,6 +12,10 @@ using MTSP.EA;
 using System.Threading;
 using System.Diagnostics;
 using MTSP.EA.DomainSpecific;
+using System.Xml.Serialization;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MTSP
 {
@@ -31,7 +35,6 @@ namespace MTSP
         public Form1()
         {
             InitializeComponent();
-            //PlotPopulation(null);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -141,12 +144,11 @@ namespace MTSP
 
             List<Individual> adultPopulation = new List<Individual>();
             adultPopulation.AddRange(eaLoop.AdultPopulation);
-            if (adultPopulation.Count > 0) PlotPopulation(adultPopulation);
+            if (adultPopulation.Count > 0) PlotPopulation(adultPopulation, true);
         }
 
         private void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
         }
 
 
@@ -163,17 +165,25 @@ namespace MTSP
         private void PlotPopulations(List<List<Individual>> populations)
         {
             foreach (List<Individual> population in populations)
-                PlotPopulation(population);
+                PlotPopulation(population, true);
         }
 
-        private void PlotPopulation(List<Individual> population)
+        private void PlotPopulation(List<Individual> population, bool clear)
         {
             // Get a new color for each plot, in case we combine several plots
             //Color color = ColorSelector.GetColor();
-            Color color = Color.DarkRed;
-            ClearPlot();
+            Color color = Color.Blue;
+            if (clear)
+            {
+                ClearPlot();
+                color = Color.DarkRed;
+            } else
+            {
+                color = ColorSelector.GetColor();
+            }
+             
+
             chart.ChartAreas[0].AxisX.Minimum = 0;
-            //chart.Series["Series1"].Points.Clear();
 
             int bestX = (int)population.Min(x => x.Distance);
             int worstX = (int)population.Max(x => x.Distance);
@@ -212,7 +222,23 @@ namespace MTSP
             };
         }
 
+        private List<Individual> DeserializePopulation(String fileName)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            Population obj = (Population)formatter.Deserialize(stream);
+            stream.Close();
+            return obj.RestorePopulation();
+        }
 
+        private void SerializePopulation(List<Individual> population, String fileName)
+        {
+            Population obj = new Population(population);
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, obj);
+            stream.Close();
+        }
 
 
 
@@ -229,9 +255,27 @@ namespace MTSP
             ClearPlot();
         }
 
-        
-        
+        private void loadPopulation_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK) // Test result.
+            {
+                string fileName = openFileDialog1.FileName;
+                List<Individual> pop = DeserializePopulation(fileName);
+                PlotPopulation(pop, false);
+            }
+        }
 
-        
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            // When user clicks button, show the dialog.
+            saveFileDialog1.ShowDialog();
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            string name = saveFileDialog1.FileName;
+            SerializePopulation(eaLoop.AdultPopulation, name);
+        }
     }
 }

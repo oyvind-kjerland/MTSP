@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTSP
 {
-    abstract class Genotype
+    public abstract class Genotype
     {
         abstract public Genotype Clone();
         abstract public void Randomize(Random random);

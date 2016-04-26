@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MTSP
 {
-    class Individual : IComparable
+    public class Individual : IComparable
     {
         // The individual's genotype
         public Genotype Genotype { get; set; }
