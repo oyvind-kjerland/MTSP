@@ -29,7 +29,7 @@ namespace MTSP.EA.DomainSpecific
                         best = p;
                     } else if (p.Rank == best.Rank)
                     {
-                        if (p.CrowdingDistance < best.CrowdingDistance)
+                        if (p.CrowdingDistance > best.CrowdingDistance)
                         {
                             best = p;
                         }

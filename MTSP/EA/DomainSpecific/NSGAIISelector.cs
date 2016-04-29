@@ -42,7 +42,7 @@ namespace MTSP.EA.DomainSpecific
             } else
             {
                 // Sort based on crowding distance
-                currentFront.Sort((x, y) => x.CrowdingDistance.CompareTo(y.CrowdingDistance));
+                currentFront.Sort((x, y) => y.CrowdingDistance.CompareTo(x.CrowdingDistance));
 
                 // Take the first N=adultPopSize-AdultCount elements
                 adultPopulation.AddRange(currentFront.GetRange(0, AdultCount - adultPopulation.Count));
