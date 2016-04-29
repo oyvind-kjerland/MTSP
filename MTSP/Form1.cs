@@ -205,6 +205,7 @@ namespace MTSP
 
             Series currentSeries = chart.Series[chart.Series.Count - 1];
 
+            int numInFront = population.Count(x => x.Rank == 0);
 
             chart.ChartAreas[0].AxisX.Minimum = 0;
 
@@ -215,6 +216,11 @@ namespace MTSP
             // Get y limits
             int bestY = (int)population.Min(y => (firstFrontOnly && y.Rank == 0 || !firstFrontOnly) ? y.Cost : double.PositiveInfinity);
             int worstY = (int)population.Max(y => (firstFrontOnly && y.Rank == 0 || !firstFrontOnly) ? y.Cost : double.NegativeInfinity);
+
+            // Log statistics
+            Console.WriteLine("Best distance: {0}  Worst distance: {1} Best cost: {2}  Worst cost: {3} In front: {4}",
+                bestX, worstX, bestY, worstY, numInFront);
+
 
             // Plot limits
             chart.ChartAreas[0].AxisX.StripLines.Add(GetLimit(bestX, color));
