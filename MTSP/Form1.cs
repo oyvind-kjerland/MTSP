@@ -183,7 +183,7 @@ namespace MTSP
                 PlotPopulation(population, true);
         }
 
-        private void PlotPopulation(List<Individual> population, bool clear)
+        private void PlotPopulation(List<Individual> population, bool clear, string seriename="Serie1")
         {
             // Get a new color for each plot, in case we combine several plots
             //Color color = ColorSelector.GetColor();
@@ -197,6 +197,7 @@ namespace MTSP
             else
             {
                 Series s = new Series();
+                s.Name = seriename;
                 s.ChartType = SeriesChartType.FastPoint;
                 color = ColorSelector.GetColor();
                 s.Color = color;
@@ -289,9 +290,11 @@ namespace MTSP
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
-                string fileName = openFileDialog1.FileName;
-                List<Individual> pop = DeserializePopulation(fileName);
-                PlotPopulation(pop, false);
+                foreach (string s in openFileDialog1.FileNames) {
+                    List<Individual> pop = DeserializePopulation(s);
+                    string filename = Path.GetFileName(s);
+                    PlotPopulation(pop, false, filename);
+                }
             }
         }
 
