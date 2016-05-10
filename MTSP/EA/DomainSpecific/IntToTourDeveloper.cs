@@ -30,9 +30,10 @@ namespace MTSP.EA.DomainSpecific
             int c;
             for (int i = 0; i < max; i++)
             {
-                c = intGenotype.List[i] % possibleCities.Count;
-                tour[i] = possibleCities[c];
-                possibleCities.RemoveAt(c);
+                //c = intGenotype.List[i] % possibleCities.Count;
+                //tour[i] = possibleCities[c];
+                //possibleCities.RemoveAt(c);
+                tour[i] = intGenotype.List[i];
             }
 
             return tourPhenotype;

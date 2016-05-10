@@ -43,6 +43,7 @@ namespace MTSP
                     val = int.Parse(values[j]);
                     arr[i, j] = val;
                     arr[j, i] = val;
+                    //arr[j, i] = 0;
                 }
                 i++;
             }

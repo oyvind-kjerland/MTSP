@@ -36,7 +36,8 @@ namespace MTSP.EA.DomainSpecific
         {
             for (int i=0; i<Length; i++)
             {
-                List[i] = random.Next(Min, Max);
+                //List[i] = random.Next(Min, Max);
+                List[i] = i;
             }
         }
     }
